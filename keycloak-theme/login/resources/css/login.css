@@ -1,0 +1,334 @@
+/* Import Outfit and Inter fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;700&display=swap');
+
+body, html {
+    background-color: #08080c !important;
+    background-image: 
+        radial-gradient(circle at 80% 20%, rgba(163, 230, 53, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(24, 214, 176, 0.04) 0%, transparent 50%) !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    color: #e4e4e7 !important;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Custom CSS generated ApeLabs brand logo header above the card */
+#kc-header {
+    display: block !important;
+    text-align: center !important;
+    margin-bottom: 24px !important;
+}
+
+#kc-header-wrapper {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 26px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    text-transform: none !important;
+    letter-spacing: -0.02em !important;
+}
+
+#kc-header-wrapper::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 38px !important;
+    height: 38px !important;
+    background-color: #a3e635 !important; /* Brand Lime Green */
+    border-radius: 50% !important;
+    /* Custom embedded black lightning bolt SVG */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M13 2L3 14h9l-1 8 10-12h-9l1-8z'/%3E%3C/svg%3E") !important;
+    background-size: 20px 20px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    box-shadow: 0 0 20px rgba(163, 230, 53, 0.45) !important;
+}
+
+/* Muted Brand Subtitle below logo */
+#kc-header-wrapper::after {
+    content: "TEAM PORTAL" !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+    color: #a3e635 !important;
+    opacity: 0.8 !important;
+    letter-spacing: 0.1em !important;
+    position: absolute !important;
+    margin-top: 38px !important;
+    margin-left: 50px !important;
+}
+
+/* Form Card Styling (Glassmorphism) */
+.card-pf, #kc-form-card, .login-pf-page .card-pf {
+    background: rgba(13, 13, 18, 0.8) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 28px !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5) !important;
+    padding: 44px !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    box-sizing: border-box !important;
+}
+
+/* Card Title styling to match Outfit font and clean white branding */
+.pf-c-title, .pf-v5-c-title, #kc-page-title, h1#kc-page-title {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important; /* Elegant white */
+    text-align: center !important;
+    margin-top: 8px !important;
+    margin-bottom: 28px !important;
+    letter-spacing: -0.025em !important;
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+    text-fill-color: initial !important;
+}
+
+/* Labels */
+label, .control-label {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #a1a1aa !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    margin-bottom: 8px !important;
+    display: block !important;
+}
+
+/* Standalone Text / Password input fields (Glassmorphic) */
+input[type="text"], input[type="password"], .form-control, .pf-c-form-control, .pf-v5-c-form-control {
+    width: 100% !important;
+    background-color: rgba(19, 19, 26, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #DFFFF8 !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 14px !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, .form-control:focus, .pf-c-form-control:focus, .pf-v5-c-form-control:focus {
+    outline: none !important;
+    border-color: #a3e635 !important; /* Brand Lime Green focus ring */
+    box-shadow: 0 0 12px rgba(163, 230, 53, 0.25) !important;
+    background-color: rgba(19, 19, 26, 0.95) !important;
+}
+
+/* Custom Password Input Wrapper styling to support PF v4 and v5 input groups */
+.pf-c-input-group, .pf-v5-c-input-group, [class*="input-group"], .kc-password-input {
+    background-color: rgba(19, 19, 26, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: stretch !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Keep the inner items transparent and aligned */
+.pf-c-input-group__item, .pf-v5-c-input-group__item {
+    background: transparent !important;
+    border: none !important;
+    display: flex !important;
+    align-items: stretch !important;
+    flex: 1 !important;
+}
+
+.pf-c-input-group__item:not(.pf-m-fill), .pf-v5-c-input-group__item:not(.pf-m-fill) {
+    flex: none !important;
+}
+
+/* Style the input inside the input group to be transparent and borderless */
+.pf-c-input-group input, .pf-v5-c-input-group input,
+.pf-c-input-group .pf-c-form-control, .pf-v5-c-input-group .pf-v5-c-form-control,
+[class*="input-group"] input, .kc-password-input input {
+    border: none !important;
+    background: transparent !important;
+    flex: 1 !important;
+    width: auto !important;
+    box-shadow: none !important;
+    padding: 12px 16px !important;
+    border-radius: 0 !important;
+}
+
+.pf-c-input-group button, .pf-v5-c-input-group button, [class*="input-group"] button, .kc-password-input button,
+.pf-c-button.pf-m-control, .pf-v5-c-button.pf-v5-m-control, .pf-v5-c-button.pf-m-control, button[class*="button"] {
+    background: transparent !important;
+    border: none !important;
+    color: #a3e635 !important; /* Brand lime green eye icon */
+    padding: 0 !important;
+    width: 48px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    flex: 0 0 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: color 0.2s ease !important;
+    outline: none !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+}
+
+/* Obliterate any pseudo-element borders that PatternFly uses for button outlines */
+.pf-c-input-group button::before, .pf-v5-c-input-group button::before,
+.pf-c-input-group button::after, .pf-v5-c-input-group button::after,
+.pf-c-button::before, .pf-v5-c-button::before,
+.pf-c-button::after, .pf-v5-c-button::after,
+.pf-c-input-group__item::before, .pf-v5-c-input-group__item::before,
+.pf-c-input-group__item::after, .pf-v5-c-input-group__item::after {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background: transparent !important;
+    display: none !important;
+}
+
+.pf-c-input-group button:hover, .pf-v5-c-input-group button:hover, [class*="input-group"] button:hover, button[class*="button"]:hover {
+    color: #ffffff !important;
+}
+
+/* Highlight the entire input group on focus */
+.pf-c-input-group:focus-within, .pf-v5-c-input-group:focus-within, [class*="input-group"]:focus-within, .kc-password-input:focus-within {
+    border-color: #a3e635 !important;
+    box-shadow: 0 0 12px rgba(163, 230, 53, 0.25) !important;
+    background-color: rgba(19, 19, 26, 0.95) !important;
+}
+
+/* Checkboxes and Labels */
+input[type="checkbox"] {
+    accent-color: #a3e635 !important;
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+}
+
+.checkbox label {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    color: #d4d4d8 !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+/* Buttons - Solid Brand Lime Green (Perfect Dashboard Match) */
+.btn-primary, input[type="submit"], 
+.pf-c-button.pf-m-primary, .pf-v5-c-button.pf-m-primary, .pf-v5-c-button.pf-v5-m-primary {
+    width: 100% !important;
+    background: #a3e635 !important; /* Solid Brand Lime Green */
+    border: 1px solid #a3e635 !important;
+    color: #08080c !important; /* High-contrast dark text */
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    padding: 12px 24px !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-transform: none !important;
+    box-shadow: 0 4px 15px rgba(163, 230, 53, 0.2) !important;
+    box-sizing: border-box !important;
+    margin-top: 20px !important;
+    display: inline-block !important;
+    text-align: center !important;
+}
+
+.btn-primary:hover, input[type="submit"]:hover,
+.pf-c-button.pf-m-primary:hover, .pf-v5-c-button.pf-m-primary:hover, .pf-v5-c-button.pf-v5-m-primary:hover {
+    background: #bbf246 !important; /* Lighter lime for brilliant hover */
+    border-color: #bbf246 !important;
+    color: #08080c !important;
+    box-shadow: 0 8px 25px rgba(163, 230, 53, 0.45) !important;
+    transform: translateY(-1px) !important;
+}
+
+.btn-primary:active, input[type="submit"]:active,
+.pf-c-button.pf-m-primary:active, .pf-v5-c-button.pf-m-primary:active, .pf-v5-c-button.pf-v5-m-primary:active {
+    transform: translateY(1px) !important;
+}
+
+/* Links & Navigation */
+a {
+    color: #a3e635 !important; /* Brand Lime Green */
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease !important;
+}
+
+a:hover {
+    color: #bbf246 !important;
+    text-decoration: underline !important;
+}
+
+/* Extra options (forgot password, register) */
+#kc-form-options, .login-pf-settings {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-size: 13px !important;
+}
+
+#kc-info, .login-pf-signup {
+    margin-top: 28px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+    padding-top: 22px !important;
+    text-align: center !important;
+    font-size: 13px !important;
+    color: #a1a1aa !important;
+}
+
+#kc-info-wrapper, .login-pf-signup span {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+}
+
+/* Alert / Error Messages */
+.alert, .kc-feedback-text {
+    padding: 12px 16px !important;
+    border-radius: 12px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    margin-bottom: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.alert-error, .alert-danger, .pf-m-danger {
+    background-color: rgba(225, 29, 72, 0.1) !important;
+    border: 1px solid rgba(225, 29, 72, 0.3) !important;
+    color: #fda4af !important;
+}
+
+.alert-success, .pf-m-success {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+    color: #a7f3d0 !important;
+}

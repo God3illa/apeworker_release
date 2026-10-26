@@ -1,0 +1,105 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: apeworker_redis
+    ports:
+      - "127.0.0.1:6379:6379"
+    restart: always
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0
+    container_name: apeworker_keycloak
+    command: start-dev
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD:-admin_password_keycloak_99}
+      - KC_PROXY=edge
+      - KC_HOSTNAME_STRICT=false
+    volumes:
+      - ./data/keycloak:/opt/keycloak/data
+      - ./keycloak-theme:/opt/keycloak/themes/apeworker
+    ports:
+      - "127.0.0.1:8080:8080"
+    restart: always
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: apeworker_backend
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=sqlite:////uploads/app.db
+      - KEYCLOAK_JWKS_URL=${KEYCLOAK_JWKS_URL:-https://auth.apeworker.top/realms/apeworker/protocol/openid-connect/certs}
+      - UPLOAD_POST_API_KEY=${UPLOAD_POST_API_KEY:-}
+    volumes:
+      - ./data/uploads:/uploads
+      - ./backend:/backend
+    depends_on:
+      - redis
+      - keycloak
+    restart: always
+
+  celery_worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: apeworker_celery
+    command: celery -A app.tasks.celery_app worker --loglevel=info
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=sqlite:////uploads/app.db
+      - UPLOAD_POST_API_KEY=${UPLOAD_POST_API_KEY:-}
+    volumes:
+      - ./data/uploads:/uploads
+      - ./backend:/backend
+    depends_on:
+      - redis
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: apeworker_frontend
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=https://apeworker.top
+      - NEXT_PUBLIC_KEYCLOAK_URL=https://auth.apeworker.top
+      - NEXT_PUBLIC_KEYCLOAK_REALM=apeworker
+      - NEXT_PUBLIC_KEYCLOAK_CLIENT_ID=apeworker-frontend
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/frontend
+      - /frontend/node_modules
+      - /frontend/.next
+    restart: always
+
+
+
+  telegram_bot:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: apeworker_bot
+    command: python -m app.bot
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=sqlite:////uploads/app.db
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
+      - TELEGRAM_ALLOWED_USERS=${TELEGRAM_ALLOWED_USERS:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - DASHBOARD_URL=${DASHBOARD_URL:-https://apeworker.top}
+    volumes:
+      - ./data/uploads:/uploads
+      - ./backend:/backend
+    depends_on:
+      - redis
+      - celery_worker
+    restart: always
